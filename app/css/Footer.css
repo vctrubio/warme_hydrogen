@@ -1,0 +1,28 @@
+.footer {
+    width: 100vw;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 25vh;
+    background-color: var(--color-primary);
+    opacity: 0.8;
+}
+
+.footer-box {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    gap: 5em;
+
+    >*{
+        font-size: 2em;
+        font-weight: bold;
+        cursor: pointer;
+    }
+}
+
+.footer-null{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2em;
+}

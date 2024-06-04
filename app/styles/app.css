@@ -6,10 +6,43 @@
   --header-height: 64px;
   --color-dark: #000;
   --color-light: #fff;
+
+  --tmp-border: 1px solid rgb(0, 0, 0);
+  --margin-lv1: 1em;
+  --mobile-md: 768px;
+  
+  --color-primary: #5056c9;
+  --color-navbar: #5d5c5f;
+}
+
+flex {
+  display: flex;
+  flex-direction: row;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+h2 {
+  font-size: 2.5em;
+}
+
+h3 {
+  font-size: 1.5em;
 }
 
 img {
   border-radius: 4px;
+}
+
+
+@media (max-width: 768px) 
+{
+  flex {
+      flex-direction: column;
+  }
 }
 
 /*

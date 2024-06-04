@@ -1,0 +1,26 @@
+.calculator{
+    position: static;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    margin-top: 10em;
+    margin-bottom: 10em;
+}
+
+.calculator-question{
+    width: 400px;
+}
+
+.calculator-question-units{
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: center;
+    height: 80px;
+    >*{
+        align-self: center;
+    }
+}

@@ -9,22 +9,30 @@ import {
   PredictiveSearchResults,
 } from '~/components/Search';
 
+import { NavBar, TopNavBar } from './NavBars';
+
 /**
  * @param {LayoutProps}
  */
 export function Layout({cart, children = null, footer, header, isLoggedIn}) {
   return (
     <>
-      <CartAside cart={cart} />
+    
+      {/* <CartAside cart={cart} />
       <SearchAside />
       <MobileMenuAside menu={header?.menu} shop={header?.shop} />
-      {header && <Header header={header} cart={cart} isLoggedIn={isLoggedIn} />}
+      {header && <Header header={header} cart={cart} isLoggedIn={isLoggedIn} />} */}
+
+      <TopNavBar />
+      <NavBar/>
+
       <main>{children}</main>
-      <Suspense>
+
+      {/* <Suspense>
         <Await resolve={footer}>
           {(footer) => <Footer menu={footer?.menu} shop={header?.shop} />}
         </Await>
-      </Suspense>
+      </Suspense> */}
     </>
   );
 }

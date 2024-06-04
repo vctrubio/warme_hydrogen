@@ -1,44 +1,69 @@
-import {defer} from '@shopify/remix-oxygen';
-import {Await, useLoaderData, Link} from '@remix-run/react';
-import {Suspense} from 'react';
-import {Image, Money} from '@shopify/hydrogen';
+import { defer } from '@shopify/remix-oxygen';
+import { Await, useLoaderData, Link } from '@remix-run/react';
+import { Suspense } from 'react';
+import { Image, Money } from '@shopify/hydrogen';
+import { BannerDesc, BannerPhoto } from '~/components/Banners';
+import { Calculator } from '~/components/Calculator';
+import { ContactForm } from '~/components/ContactForm';
+import { MyFooter } from '~/components/myFooter';
+
+
 
 /**
  * @type {MetaFunction}
  */
 export const meta = () => {
-  return [{title: 'Hydrogen | Home'}];
+  return [{ title: 'Warme Heaters' }];
 };
 
 /**
  * @param {LoaderFunctionArgs}
  */
-export async function loader({context}) {
-  const {storefront} = context;
-  const {collections} = await storefront.query(FEATURED_COLLECTION_QUERY);
+export async function loader({ context }) {
+  const { storefront } = context;
+  const { collections } = await storefront.query(FEATURED_COLLECTION_QUERY);
   const featuredCollection = collections.nodes[0];
   const recommendedProducts = storefront.query(RECOMMENDED_PRODUCTS_QUERY);
 
-  return defer({featuredCollection, recommendedProducts});
+  return defer({ featuredCollection, recommendedProducts });
 }
 
 export default function Homepage() {
   /** @type {LoaderReturnData} */
   const data = useLoaderData();
+
+  console.log('data, ', data.recommendedProducts);
+  const Divider = () => {
+    return (
+      <div style={{ height: '40vh', width: '100%', backgroundColor: '#666666' }}>
+        
+      </div>
+    )
+  }
+
   return (
     <div className="home">
-      <FeaturedCollection collection={data.featuredCollection} />
-      <RecommendedProducts products={data.recommendedProducts} />
+      {/* <FeaturedCollection collection={data.featuredCollection} />
+      <RecommendedProducts products={data.recommendedProducts} /> */}
+
+      <BannerPhoto />
+      <BannerDesc />
+      <Calculator />
+      <Divider />
+      <ContactForm />
+      <MyFooter />
     </div>
   );
 }
+
+
 
 /**
  * @param {{
  *   collection: FeaturedCollectionFragment;
  * }}
  */
-function FeaturedCollection({collection}) {
+function FeaturedCollection({ collection }) {
   if (!collection) return null;
   const image = collection?.image;
   return (
@@ -61,13 +86,13 @@ function FeaturedCollection({collection}) {
  *   products: Promise<RecommendedProductsQuery>;
  * }}
  */
-function RecommendedProducts({products}) {
+function RecommendedProducts({ products }) {
   return (
     <div className="recommended-products">
       <h2>Recommended Products</h2>
       <Suspense fallback={<div>Loading...</div>}>
         <Await resolve={products}>
-          {({products}) => (
+          {({ products }) => (
             <div className="recommended-products-grid">
               {products.nodes.map((product) => (
                 <Link
