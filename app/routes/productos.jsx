@@ -5,9 +5,9 @@ import { Suspense } from 'react';
 
 export async function loader({ context }) {
     const { storefront } = context;
-    const recommendedProducts = storefront.query(RECOMMENDED_PRODUCTS_QUERY);
+    const getProducts = storefront.query(RECOMMENDED_PRODUCTS_QUERY);
 
-    return defer({ recommendedProducts });
+    return defer({ getProducts });
 }
 
 export default function Productos() {
@@ -16,12 +16,12 @@ export default function Productos() {
     return (
         <div>
             <h1 style={{textAlign: 'center'}}>Productos</h1>
-            <RecommendedProducts products={data.recommendedProducts} />
+            <ProductsAll products={data.getProducts} />
         </div>
     );
 }
 
-function RecommendedProducts({ products }) {
+function ProductsAll({ products }) {
  return (
    <div className="recommended-products">
      <Suspense fallback={<div>Loading...</div>}>
@@ -80,6 +80,38 @@ const RECOMMENDED_PRODUCTS_QUERY = `#graphql
     products(first: 4, sortKey: UPDATED_AT, reverse: true) {
       nodes {
         ...RecommendedProduct
+      }
+    }
+  }
+`;
+
+//to CHANGE TO...
+const ALL_PRODUCTS_QUERY = `#graphql
+  fragment Product on Product {
+    id
+    title
+    handle
+    priceRange {
+      minVariantPrice {
+        amount
+        currencyCode
+      }
+    }
+    images(first: 1) {
+      nodes {
+        id
+        url
+        altText
+        width
+        height
+      }
+    }
+  }
+  query AllProducts ($country: CountryCode, $language: LanguageCode)
+    @inContext(country: $country, language: $language) {
+    products(sortKey: UPDATED_AT, reverse: true) {
+      nodes {
+        ...Product
       }
     }
   }
