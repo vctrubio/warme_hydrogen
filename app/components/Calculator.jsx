@@ -7,47 +7,52 @@ const CalculatorQuestion = ({ question, min, max, value, setValue }) => {
         setValue(event.target.value);
     };
 
-    const handleInputChange = (event) => {
-        setValue(event.target.value === '' ? '' : Number(event.target.value));
-    };
-
     return (
         <div className='calculator-question'>
-            <span style={{ fontSize: '1.4em', width: '100%' }}>{question}</span>
-            <div className='calculator-question'>
-                <div className='calculator-question-units'>
-                    <input
-                        type="range"
-                        min={min}
-                        max={max}
-                        value={value}
-                        onChange={handleSliderChange}
-                        className="slider"
-                        id="myRange"
-                        style={{
-                            flex: '2',
-                            marginRight: '1em',
-                        }}
-                    />
-                    <input
-                        type="number"
-                        min={min}
-                        max={max}
-                        value={value}
-                        readOnly
-                        onChange={handleInputChange}
-                        style={{
-                            padding: '10px !important',
-                            width: '40px',
-                            height: '40px',
-                            marginBottom: '4em',
-                        }}
-                    />
-                </div>
+            <span style={{ fontSize: '1.4em', width: '100%' }}>¿{question}?</span>
+            <div className='calculator-question-units'>
+                <input
+                    type="range"
+                    min={min}
+                    max={max}
+                    value={value}
+                    onChange={handleSliderChange}
+                    className="slider"
+                />
+                <div className='slider-target'>{value}</div>
             </div>
         </div>
     );
 };
+
+const BarContainer = ({ title, a, b }) => {
+    return (
+        <div className='bar-container'>
+            <div className='bar-title'>{title}</div>
+            <div className='bar-2chart'>
+                <div className='d-flex flex-column align-end'>
+                    <div className='bar-outline' style={{
+                        width: '100px', /* Default size */
+                        height: `${a}px`, /* Set height based on value */
+                        backgroundColor: '#4CAF50', /* Green color */
+                        paddingTop: '5px'
+                    }}>{a}€</div>
+                    <div className='bar-label'>Tradicional</div>
+                </div>
+                <div>
+                    <div className='bar-outline' style={{
+                        width: '100px', /* Default size */
+                        height: `${b}px`, /* Set height based on value */
+                        backgroundColor: '#4C2250', /* Green color */
+                        paddingTop: '5px'
+                    }}>{b}€</div>
+                    <div className='bar-label'>Warme</div>
+                </div>
+            </div>
+            <div className='bar-footer'>+21500€ ahorrados (1año)</div>
+        </div>
+    );
+}
 
 export const Calculator = () => {
     const [questions, setQuestions] = React.useState([
@@ -83,8 +88,9 @@ export const Calculator = () => {
                     <p style={{ textAlign: 'left' }}>*Los cálculos se basan en lámparas de calor de 1,5 kWh,<br />
                         quemadores de gas de 12 kWh y un precio de la energía de 3€ por kWh.</p>
                 </div>
-                <div className='d-flex flex-column'>
-                    {/* Replace with your chart component */}
+                <div style={{display: 'flex', flexDirection: 'column', gap: 40, margin: '0 4em 0 4em'}}>
+                    <BarContainer title='COMPARATIVA - PRECIO' a={50} b={90} />
+                    <BarContainer title='COMPARATIVA - EMISSIONES' a={120} b={80} />
                 </div>
             </flex>
             <div className='calculator-chart'>
