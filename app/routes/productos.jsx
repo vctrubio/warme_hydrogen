@@ -15,7 +15,7 @@ export default function Productos() {
 
     return (
         <div>
-            <h1>Productos</h1>
+            <h1 style={{textAlign: 'center'}}>Productos</h1>
             <RecommendedProducts products={data.recommendedProducts} />
         </div>
     );

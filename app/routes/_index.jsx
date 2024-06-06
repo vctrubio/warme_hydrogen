@@ -27,10 +27,8 @@ export async function loader({ context }) {
 }
 
 export default function Homepage() {
-  /** @type {LoaderReturnData} */
-  const data = useLoaderData();
+  const data = useLoaderData(); /** @type {LoaderReturnData} */
 
-  console.log('dataiknow, ', data.recommendedProducts);
   const Divider = () => {
     return (
       <div style={{ height: '40vh', width: '100%', backgroundColor: '#666666' }}>

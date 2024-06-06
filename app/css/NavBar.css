@@ -20,9 +20,21 @@
     left: 50%;
     transform: translate(-50%);
 
-    >* {
+    >* >*{
         margin: 0 1em 0 1em;
+     }
+     
+}
+
+.links-to{
+    >* {
         cursor: pointer;
+        text-decoration: none;
+    }
+
+
+    >*:hover {
+        color: #888 !important;
         text-decoration: none;
     }
 
@@ -30,10 +42,6 @@
         color: inherit;
     }
 
-    >*:hover {
-        color: #888 !important;
-        text-decoration: none;
-    }
 }
 
 .navbar-lang {
