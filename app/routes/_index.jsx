@@ -7,8 +7,6 @@ import { Calculator } from '~/components/Calculator';
 import { ContactForm } from '~/components/ContactForm';
 import { MyFooter } from '~/components/myFooter';
 
-
-
 /**
  * @type {MetaFunction}
  */
@@ -32,7 +30,7 @@ export default function Homepage() {
   /** @type {LoaderReturnData} */
   const data = useLoaderData();
 
-  console.log('data, ', data.recommendedProducts);
+  console.log('dataiknow, ', data.recommendedProducts);
   const Divider = () => {
     return (
       <div style={{ height: '40vh', width: '100%', backgroundColor: '#666666' }}>
