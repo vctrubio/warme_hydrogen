@@ -19,13 +19,20 @@
     position: absolute;
     left: 50%;
     transform: translate(-50%);
+
     >* {
         margin: 0 1em 0 1em;
         cursor: pointer;
+        text-decoration: none;
     }
+
+    >*:visited {
+        color: inherit;
+    }
+
     >*:hover {
-        color: #888;
-        scale: 1.2;
+        color: #888 !important;
+        text-decoration: none;
     }
 }
 

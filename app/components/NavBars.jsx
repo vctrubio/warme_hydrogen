@@ -1,6 +1,6 @@
 import '../css/NavBar.css'
 import '../css/TopNavBar.css'
-import { Link } from '@remix-run/react';
+import { NavLink } from '@remix-run/react';
 
 
 export const TopNavBar = () => {
@@ -22,12 +22,12 @@ export const TopNavBar = () => {
 export const NavBar = () => {
   return (
     <div className='nav-bar'>
-
       <div className='navbar-menu'>
-        <div>Acerca</div>
-        <div>Calculador</div>
-        <div>Productos</div>
-        <div>Contacto</div>
+        {/* <NavLink to="/" activeClassName="active-link">Acerca</NavLink> */}
+        <NavLink to="/">Acerca</NavLink>
+        <NavLink to="/calculadora">Calculadora</NavLink>
+        <NavLink to="/productos">Productos</NavLink>
+        <NavLink to="/contacto">Contacto</NavLink>
       </div>
       <flex className='navbar-lang'>
         <div className="bordered">ES</div>

@@ -119,6 +119,7 @@ export default {
  * @param {Request} request
  */
 function getLocaleFromRequest(request) {
+  /*ptr-note: to edit here language set up*/
   const defaultLocale = {language: 'EN', country: 'US'};
   const supportedLocales = {
     ES: 'ES',

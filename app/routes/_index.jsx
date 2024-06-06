@@ -42,7 +42,7 @@ export default function Homepage() {
   }
 
   return (
-    <div className="home">
+    <div>
       {/* <FeaturedCollection collection={data.featuredCollection} />
       <RecommendedProducts products={data.recommendedProducts} /> */}
 
